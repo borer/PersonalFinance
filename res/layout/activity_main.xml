@@ -3,12 +3,152 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/leftMoneyTV" >
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    		xmlns:tools="http://schemas.android.com/tools"
+    		android:layout_width="match_parent"
+    		android:layout_height="match_parent" >
+    
+            		
+	<TextView
+        android:id="@+id/leftMoneyTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
+        android:layout_marginTop="22dp"
+        android:text="€2.347.50"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/leftTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/leftMoneyTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Left"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/spentMoneyTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/leftMoneyTV"
+        android:layout_alignBottom="@+id/leftMoneyTV"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="18dp"
+        android:text="€152.50"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/earnedMoneyTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/leftMoneyTV"
+        android:layout_alignBottom="@+id/leftMoneyTV"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:text="€2.500.00"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/earnedTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/leftTV"
+        android:layout_alignBottom="@+id/leftTV"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:text="Earned"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/spentTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/leftTV"
+        android:layout_alignBottom="@+id/leftTV"
+        android:layout_alignLeft="@+id/spentMoneyTV"
+        android:text="Spent"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ProgressBar
+        android:id="@+id/moneyProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/leftTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="20dp" />
+
+    <ListView
+        android:id="@+id/lastTransactionsLV"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/moneyProgressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="18dp" >
+    </ListView>
+    
+    <Button
+        android:id="@+id/addTransactionButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lastTransactionsLV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="18dp"
+        android:text="Add transaction" />
+    
+    <ScrollView
+        android:id="@+id/leaderAndMapScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTransactionButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="2dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:orientation="horizontal">
+            
+        <Button
+        android:id="@+id/leaderBoardButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="Leader Board" />
+        
+        <Button
+        android:id="@+id/mapButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="Map" />
+            
+        </LinearLayout>
+    </ScrollView>
+    
+    
+    </RelativeLayout>
+    </ScrollView>
+
+    
 
 </RelativeLayout>
