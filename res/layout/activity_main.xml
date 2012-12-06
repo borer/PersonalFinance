@@ -16,16 +16,15 @@
     		android:layout_width="match_parent"
     		android:layout_height="match_parent" >
     
-            		
 	<TextView
-        android:id="@+id/leftMoneyTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="€2.347.50"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    android:id="@+id/leftMoneyTV"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="22dp"
+	    android:text="€2.222.22"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/leftTV"
@@ -45,7 +44,7 @@
         android:layout_alignBottom="@+id/leftMoneyTV"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="18dp"
-        android:text="€152.50"
+        android:text="€222.22"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -56,7 +55,7 @@
         android:layout_alignBottom="@+id/leftMoneyTV"
         android:layout_alignParentRight="true"
         android:layout_marginRight="18dp"
-        android:text="€2.500.00"
+        android:text="€2.222.22"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -94,7 +93,7 @@
     <ListView
         android:id="@+id/lastTransactionsLV"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_below="@+id/moneyProgressBar"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="18dp"
