@@ -34,11 +34,19 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int nTransaccionesMasRecientes;
+        
+        updateDataDisplayed();
+        
+        // Create the actions for the buttons
+        
+    }
+    
+    public void updateDataDisplayed() {
+    	int nTransaccionesMasRecientes;
         dateFormat = "yyyy-MM-dd HH:mm:ss";
         recentTransactionsArray = new ArrayList<Transaccion>();
         
-        //Abrimos la base de datos en modo escritura
+    	// Abrimos la base de datos en modo escritura
         DBManager sqlH = new DBManager(this);
         database = sqlH.getWritableDatabase();
         
@@ -96,13 +104,9 @@ public class MainActivity extends Activity {
         	lastTransactionsLV.setAdapter(new RecentTransactionsAdapter(this, 
         			android.R.layout.simple_list_item_1, R.id.lastTransactionsLV,
         			recentTransactionsArray));
-        	
         }
-        
-        // Create the actions for the buttons
-        
         database.close();
-    }
+    } 
     
 
     // Convierte un cursor en un objeto Transaccion

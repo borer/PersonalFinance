@@ -33,7 +33,7 @@
         android:layout_below="@+id/leftMoneyTV"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Left"
+        android:text="@string/Left"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -66,7 +66,7 @@
         android:layout_alignBottom="@+id/leftTV"
         android:layout_alignParentRight="true"
         android:layout_marginRight="18dp"
-        android:text="Earned"
+        android:text="@string/Earned"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -76,7 +76,7 @@
         android:layout_alignBaseline="@+id/leftTV"
         android:layout_alignBottom="@+id/leftTV"
         android:layout_alignLeft="@+id/spentMoneyTV"
-        android:text="Spent"
+        android:text="@string/Spent"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <ProgressBar
@@ -110,7 +110,7 @@
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         android:layout_marginTop="18dp"
-        android:text="Add transaction" />
+        android:text="@string/Add_transaction" />
     
     <ScrollView
         android:id="@+id/leaderAndMapScrollView"
@@ -132,14 +132,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
-        android:text="Leader Board" />
+        android:text="@string/Leader_Board" />
         
         <Button
         android:id="@+id/mapButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
-        android:text="Map" />
+        android:text="@string/Map" />
             
         </LinearLayout>
     </ScrollView>
