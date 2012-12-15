@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	SQLiteDatabase database;
 	float moneySpent;
 	float moneyEarned;
-	ArrayList<Transaccion> recentTransactionsArray;
+	ArrayList<Transaction> recentTransactionsArray;
 	String dateFormat;
 	
 	
@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
     public void updateDataDisplayed() {
     	int nTransaccionesMasRecientes;
         dateFormat = "yyyy-MM-dd HH:mm:ss";
-        recentTransactionsArray = new ArrayList<Transaccion>();
+        recentTransactionsArray = new ArrayList<Transaction>();
         
     	// Abrimos la base de datos en modo escritura
         DBManager sqlH = new DBManager(this);
@@ -110,13 +110,13 @@ public class MainActivity extends Activity {
     
 
     // Convierte un cursor en un objeto Transaccion
-    public Transaccion crearTransaccionMedianteCursor(Cursor cursor, boolean isOutcome){
-    	Transaccion transaccion = null;
+    public Transaction crearTransaccionMedianteCursor(Cursor cursor, boolean isOutcome){
+    	Transaction transaccion = null;
     	
     	SimpleDateFormat format = new SimpleDateFormat(dateFormat);
   	  	try{
   	  		Date date = format.parse(cursor.getString(1));
-    		transaccion = new Transaccion(Float.parseFloat(cursor.getString(0)), date, cursor.getString(2), isOutcome);
+    		transaccion = new Transaction(Float.parseFloat(cursor.getString(0)), date, cursor.getString(2), isOutcome);
   	  	}
   	  	catch(ParseException e){
     		System.out.println("Couldn't parse date");
@@ -135,10 +135,10 @@ public class MainActivity extends Activity {
     }
     
     
-    private class RecentTransactionsAdapter extends ArrayAdapter<Transaccion>{
+    private class RecentTransactionsAdapter extends ArrayAdapter<Transaction>{
 
     	public RecentTransactionsAdapter(Context context, int resource,
-    			int textViewResourceId, ArrayList<Transaccion> recentTransactionsArray) {
+    			int textViewResourceId, ArrayList<Transaction> recentTransactionsArray) {
     		super(context, resource, textViewResourceId, recentTransactionsArray);
     	}
 

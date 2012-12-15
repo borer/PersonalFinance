@@ -2,13 +2,31 @@ package org.personalfinance;
 
 import java.util.Date;
 
-public class Transaccion implements Comparable<Transaccion> {
+public class Transaction implements Comparable<Transaction> {
+	
+	//Used to identify this object in the database
+	private int id;
+	
+	private int category;
+	
 	private float cantidadDinero;
+	
 	private Date fecha;
+	
 	private String nota;
+	
+	private float longitud;
+	
+	private float latitud;
+	
 	public boolean isOutcome;
 	
-	public Transaccion(float cantidadDinero, Date fecha, String nota,
+	//This must exist ,so don't remove it with an excuse to optimize this .
+	public Transaction(){
+		
+	}
+	
+	public Transaction(float cantidadDinero, Date fecha, String nota,
 			boolean isOutcome) {
 		super();
 		this.cantidadDinero = cantidadDinero;
@@ -42,8 +60,40 @@ public class Transaccion implements Comparable<Transaccion> {
 		this.isOutcome = isOutcome;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
+	public float getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(float longitud) {
+		this.longitud = longitud;
+	}
+
+	public float getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(float latitud) {
+		this.latitud = latitud;
+	}
+
 	@Override
-	  public int compareTo(Transaccion t) {
+	  public int compareTo(Transaction t) {
 		if (getFecha() == null || t.getFecha() == null)
 		      return 0;
 		
