@@ -15,11 +15,14 @@ public class Transaction implements Comparable<Transaction> {
 	
 	private String nota;
 	
+	private int localizacionValida;
+	
 	private float longitud;
 	
 	private float latitud;
 	
 	public boolean isOutcome;
+	
 	
 	//This must exist ,so don't remove it with an excuse to optimize this .
 	public Transaction(){
@@ -35,6 +38,21 @@ public class Transaction implements Comparable<Transaction> {
 		this.isOutcome = isOutcome;
 	}
 	
+	public Transaction(int id, int category, float cantidadDinero, Date fecha,
+			String nota, int localizacionValida, float longitud, float latitud,
+			boolean isOutcome) {
+		super();
+		this.id = id;
+		this.category = category;
+		this.cantidadDinero = cantidadDinero;
+		this.fecha = fecha;
+		this.nota = nota;
+		this.localizacionValida = localizacionValida;
+		this.longitud = longitud;
+		this.latitud = latitud;
+		this.isOutcome = isOutcome;
+	}
+
 	public float getCantidadDinero() {
 		return cantidadDinero;
 	}
@@ -74,6 +92,14 @@ public class Transaction implements Comparable<Transaction> {
 
 	public void setCategory(int category) {
 		this.category = category;
+	}
+
+	public int getLocalizacionValida() {
+		return localizacionValida;
+	}
+
+	public void setLocalizacionValida(int localizacionValida) {
+		this.localizacionValida = localizacionValida;
 	}
 
 	public float getLongitud() {

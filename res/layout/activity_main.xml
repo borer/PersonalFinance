@@ -144,6 +144,16 @@
         </LinearLayout>
     </ScrollView>
     
+    <Button
+        android:id="@+id/AllTransactionButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/leaderAndMapScrollView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:text="History" />
+    
     
     </RelativeLayout>
     </ScrollView>
