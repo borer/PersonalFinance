@@ -11,5 +11,6 @@
     <string name="Map">Map</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_transaction_list">TransactionListActivity</string>
+    <string name="title_activity_score">ScoreActivity</string>
 
 </resources>

@@ -48,6 +48,20 @@ public class MainActivity extends Activity {
 			}
 		};
 		allTransactionsButton.setOnClickListener(allTransactionListener);
+		
+		//Set the handler for the leader Board  activity
+		Button leaderBoardButton = (Button) findViewById(R.id.leaderBoardButton);
+		OnClickListener leaderBoardListener = new OnClickListener() {
+
+			public void onClick(View v) {
+
+				Intent transactionList = new Intent(getApplicationContext(),
+						leaderBoardActivity.class);
+				startActivity(transactionList);
+			}
+		};
+		leaderBoardButton.setOnClickListener(leaderBoardListener);
+
 
 	}
 

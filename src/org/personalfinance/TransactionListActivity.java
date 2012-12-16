@@ -52,8 +52,6 @@ public class TransactionListActivity extends Activity {
 	 */
 	private class TransactionListAdapter extends ArrayAdapter<Transaction> {
 
-		private int count;
-
 		private List<Transaction> data;
 		private int layoutResourceId;
 		private Context context;
