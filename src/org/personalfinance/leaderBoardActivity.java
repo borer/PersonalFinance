@@ -18,12 +18,22 @@ import com.google.gson.reflect.TypeToken;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class leaderBoardActivity extends Activity {
 
-	List<HighScore> scores;
+	private List<HighScore> scores;
+	
+	private LeaderBoardAdapter adapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +41,21 @@ public class leaderBoardActivity extends Activity {
 		setContentView(R.layout.activity_leader_board);
 		
 		new LeaderBoardLoading().execute();
-
+		
+		ListView leadderBoardListView = (ListView) findViewById(R.id.LeaderBoard_listView);
+		
+		/*List<HighScore> test = new ArrayList<HighScore>();
+		HighScore newh = new HighScore("test", 120);
+		test.add(newh);*/
+		
+		this.scores = new ArrayList<HighScore>();
+		
+		this.adapter = new LeaderBoardAdapter(this,
+				R.layout.leader_board_listview_row,
+				this.scores);
+		
+		leadderBoardListView.setAdapter(this.adapter);
+		
 	}
 
 	@Override
@@ -67,6 +91,17 @@ public class leaderBoardActivity extends Activity {
 			
 			
 		}
+		
+		ListView leaderBoardListView = (ListView) findViewById(R.id.LeaderBoard_listView);
+		
+		this.adapter = new LeaderBoardAdapter(this,
+				R.layout.leader_board_listview_row,
+				this.scores);
+		
+		
+		leaderBoardListView.setAdapter(adapter);
+		
+		//this.adapter.notifyDataSetChanged();
 		
 	}
 
@@ -122,5 +157,75 @@ public class leaderBoardActivity extends Activity {
 			
 			leaderBoardActivity.this.updateDisplay();
 		}
+	}
+	
+	
+	/**
+	 * Adapter for the leader board listview
+	 * @author bogdan
+	 *
+	 */
+	private class LeaderBoardAdapter extends ArrayAdapter<HighScore> {
+		
+		private List<HighScore> data;
+		private int layoutResourceId;
+		private Context context;
+
+		public LeaderBoardAdapter(Context context, int resource,
+				List<HighScore> objects) {
+
+			super(context, resource, objects);
+
+			this.data = objects;
+			this.layoutResourceId = resource;
+			this.context = context;
+		}
+
+		public int getCount() {
+			return this.data.size();
+		}
+		
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View row = convertView;
+			RowHolder holder = null;
+
+			if (row == null) {
+				LayoutInflater inflater = ((Activity) this.context)
+						.getLayoutInflater();
+				row = inflater.inflate(this.layoutResourceId, parent, false);
+
+				holder = new RowHolder();
+				holder.txtName = (TextView) row
+						.findViewById(R.id.LeaderBoard_Row_Name);
+				holder.txtScore = (TextView) row
+						.findViewById(R.id.LeaderBoard_Row_Score);
+
+				row.setTag(holder);
+			} else {
+				holder = (RowHolder) row.getTag();
+			}
+
+			HighScore score = this.data.get(position);
+
+			holder.txtName
+					.setText(score.getName());
+			
+			holder.txtScore.setText( Integer.toString(score.getScore()) );
+
+			return row;
+		}
+	}
+	
+	/**
+	 * Helper class for the listView adapter
+	 * 
+	 * @author bogdan
+	 * 
+	 */
+	static class RowHolder {
+		RelativeLayout row;
+		TextView txtName;
+		TextView txtScore;
 	}
 }
