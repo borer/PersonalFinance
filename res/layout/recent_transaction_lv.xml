@@ -11,7 +11,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="+"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#DEDEDE" />
 
     <TextView
         android:id="@+id/transactionTV"
@@ -21,7 +22,8 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/transactionSignTV"
         android:text="Transaction name"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#DEDEDE" />
 
     <TextView
         android:id="@+id/transactionAmountTV"
@@ -30,6 +32,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="€2500"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#DEDEDE" />
 
 </RelativeLayout>
