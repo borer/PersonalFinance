@@ -1,5 +1,6 @@
 package org.personalfinance;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -114,7 +115,15 @@ public class MainActivity extends Activity {
 		// Fill list of the 3 most recent transactions
 		Collections.sort(outcomeTransactions);
 		
-		List<Transaction> recentTransactions = outcomeTransactions.subList(0, nTransaccionesMasRecientes);
+		List<Transaction> recentTransactions = new ArrayList<Transaction>();
+		for(int i =0 ;i > nTransaccionesMasRecientes ; i++){
+			
+			//This is in order to detect if there is less than 3 transactions
+			if(i == outcomeTransactions.size()) break; 
+			
+			Transaction transaction = outcomeTransactions.get(i);
+			recentTransactions.add(transaction);
+		}
 		
 		ListView lastTransactionsLV = (ListView) findViewById(R.id.lastTransactionsLV);
 		lastTransactionsLV.setAdapter(new RecentTransactionsAdapter(this,
@@ -176,7 +185,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	void crearDatosDePrueba(SQLiteDatabase database) {
+	/*void crearDatosDePrueba(SQLiteDatabase database) {
 
 		database.execSQL("INSERT INTO INCOME (Id, Nota, Fecha, Ganacia) "
 				+ "VALUES (1, 'Sueldo', '2012-12-06 05:40:00',2500)");
@@ -190,6 +199,6 @@ public class MainActivity extends Activity {
 		database.execSQL("INSERT INTO OUTCOME (Id, Nota, Fecha, Categoria, LocalizacionValida, Longitud, Latitud, Gasto) "
 				+ "VALUES (4, 'Bocadillo', '2012-12-09 05:40:00', 1, 0, 0, 0, 2.50)");
 
-	}
+	}*/
 
 }
