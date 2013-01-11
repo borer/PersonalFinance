@@ -1,0 +1,203 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+   <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:id="@+id/Cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+					android:orientation="vertical" >
+					
+					<TextView
+			            android:id="@+id/TipoMensajeGasto"
+			            android:layout_width="fill_parent"
+			            android:layout_height="wrap_content"
+			            android:layout_marginLeft="5dp"
+			            android:layout_marginTop="5dp"
+			            android:text="Select the category:"
+			            android:textAppearance="?android:attr/textAppearanceMedium" />
+					
+					<Spinner
+            			android:id="@+id/SelectTipoGasto"
+            			android:layout_width="fill_parent"
+           				android:layout_height="wrap_content"
+            			android:layout_alignParentRight="true"
+            			android:layout_marginRight="10dp"
+            			android:layout_marginTop="5dp" /> 
+            			            
+			        <TextView
+			            android:id="@+id/costTextView"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_marginLeft="5dp"
+			            android:layout_marginTop="5dp"
+			            android:text="Cost:"
+			            android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			        <EditText
+			            android:id="@+id/costEdit"
+						android:layout_width="fill_parent"
+			            android:layout_height="wrap_content"
+			            android:layout_alignBaseline="@+id/costTextView"
+			            android:layout_alignBottom="@+id/costTextView"
+			            android:layout_marginLeft="5dp"
+			            android:layout_marginRight="5dp"
+			            android:layout_marginTop="5dp"
+			            android:layout_toRightOf="@+id/costTextView"
+			            android:maxLines="1"
+			            android:maxLength="25"
+			            android:ems="10"
+			            android:hint="0"
+			            android:inputType="numberDecimal"  />   
+			        <LinearLayout
+	                    android:id="@+id/geolayout"
+	                    android:layout_width="match_parent"
+	                    android:layout_height="match_parent"
+						android:orientation="horizontal" >
+				        <TextView
+				            android:id="@+id/geoTextView"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_marginLeft="5dp"
+				            android:layout_marginTop="0dp"
+				            android:text="Geolocation:"
+				            android:textAppearance="?android:attr/textAppearanceMedium" />
+				        
+						<CheckBox 
+						    android:id="@+id/geocheck" 
+						    android:layout_marginLeft="150dp"
+						    android:layout_marginTop="0dp"
+							android:layout_width="wrap_content" 
+							android:layout_height="wrap_content"  />	        
+					</LinearLayout>						
+				</LinearLayout>
+                <LinearLayout
+                    android:id="@+id/Profit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+					android:orientation="vertical" >
+			        <TextView
+			            android:id="@+id/ProfitTextView"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_marginLeft="5dp"
+			            android:layout_marginTop="5dp"
+			            android:text="Profit:"
+			            android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			        <EditText
+			            android:id="@+id/ProfitEdit"
+			            android:layout_width="fill_parent"
+			            android:layout_height="wrap_content"
+			            android:layout_alignBaseline="@+id/costTextView"
+			            android:layout_alignBottom="@+id/costTextView"
+			            android:layout_marginLeft="5dp"
+			            android:layout_marginRight="5dp"
+			            android:layout_marginTop="5dp"
+			            android:maxLength="25"
+			            android:layout_toRightOf="@+id/costTextView"
+			            android:maxLines="1"
+			            android:ems="10"
+			            android:hint="0"
+			            android:inputType="numberDecimal" />             
+                </LinearLayout>
+            </FrameLayout>
+          	<TextView
+	            android:id="@+id/DescriptionCost"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="5dp"
+	            android:text="Description:"
+	            android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	        <EditText
+	            android:id="@+id/costDescripcionEdit"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_alignBaseline="@+id/DescripcionMensaje"
+	            android:layout_alignBottom="@+id/DescripcionMensaje"
+	            android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+	            android:lines="2"
+	            android:maxLength="58"
+	            android:layout_toRightOf="@+id/DescripcionMensaje"
+	            android:ems="10" />
+ 
+	    <LinearLayout
+           	android:id="@+id/Time"
+           	android:layout_width="match_parent"
+       		android:layout_height="match_parent"
+			android:orientation="horizontal" >
+			
+			<TextView
+	            android:id="@+id/ActualDateTextView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="5dp"
+	            android:layout_marginTop="5dp"
+	            android:text="Actual Date:"
+	            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	        <Button
+	            android:id="@+id/TimeButton"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="5dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_marginTop="5dp"
+	            android:text="Date" />
+	        
+		</LinearLayout>	        
+		<RelativeLayout 
+	   		android:layout_width="match_parent"
+	   		android:layout_height="match_parent" >
+	       
+	       <Button
+	           android:id="@+id/CancelarButton"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:width="150dp"
+	           android:layout_marginLeft="10dp"
+	           android:orientation="horizontal"
+	           android:text="Cancel" />
+	
+	       <Button
+	           android:id="@+id/AceptarButton"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:width="150dp"
+	           android:layout_alignParentTop="true"
+	           android:layout_toRightOf="@+id/CancelarButton"
+	           android:orientation="horizontal"
+	           android:text="Save" />       
+		</RelativeLayout>
+            
+        </LinearLayout>
+    </TabHost>
+
+ 
+</RelativeLayout>

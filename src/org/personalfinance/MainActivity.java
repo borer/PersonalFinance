@@ -63,6 +63,18 @@ public class MainActivity extends Activity {
 		};
 		leaderBoardButton.setOnClickListener(leaderBoardListener);
 
+		//Set the handler for the Introducir_coste  activity
+		Button AddTransactionButton = (Button) findViewById(R.id.addTransactionButton);
+		OnClickListener AddTransactionListener = new OnClickListener() {
+
+			public void onClick(View v) {
+
+				Intent transactionList = new Intent(getApplicationContext(),
+						Introducir_coste.class);
+				startActivity(transactionList);
+			}
+		};
+		AddTransactionButton.setOnClickListener(AddTransactionListener);
 
 	}
 

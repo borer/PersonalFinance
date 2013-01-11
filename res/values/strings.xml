@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Personal Finance</string>
@@ -12,5 +13,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_transaction_list">TransactionListActivity</string>
     <string name="title_activity_score">ScoreActivity</string>
+    <string name="title_activity_introducir_coste">Introducir_coste</string>
 
 </resources>
