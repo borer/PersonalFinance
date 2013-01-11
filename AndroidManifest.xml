@@ -37,7 +37,8 @@
         </activity>
         <activity
             android:name="org.personalfinance.Introducir_coste"
-            android:label="@string/title_activity_introducir_coste" >
+            android:label="@string/title_activity_introducir_coste" 
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
     </application>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

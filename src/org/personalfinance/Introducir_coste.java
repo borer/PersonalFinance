@@ -1,10 +1,14 @@
 package org.personalfinance;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 import org.personalfinance.database.DBManager;
+import org.personalfinance.database.TransactionDAO;
 
 
 import android.R.bool;
@@ -48,12 +52,12 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView.OnEditorActionListener;
 
 public class Introducir_coste extends Activity {
-    final String[] TipoGasto = new String[]{"Clothes","Food","Bar","General","Gift","Hobbies"
+    final String[] TipoGasto = new String[]{"General","Clothes","Food","Bar","Gift","Hobbies"
     		,"HouseHold","Car","Personal","Shopping","Travel"};
 
     String IdActual;
     int categoria;
-    boolean geo=false;
+    int geo=0;
     private TextView dateDisplay;
     private Button pickDate;
     private int year;
@@ -63,7 +67,7 @@ public class Introducir_coste extends Activity {
 
 	private LocationManager locManager;
 	private LocationListener locListener;
-    double Latitud,Longitud;
+    float Latitud,Longitud;
     
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -125,11 +129,11 @@ public class Introducir_coste extends Activity {
         cb.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
 	        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		        if (isChecked) {
-		        	geo=true;
+		        	geo=1;
 		        	comenzarLocalizacion();
 		        }
 		        else {
-		        	geo=false;
+		        	geo=0;
 		        	finalizarLocalizacion();
 		        }
 	        }
@@ -170,45 +174,59 @@ public class Introducir_coste extends Activity {
         btnBoton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0)
             {
-            	
-            	SQLiteDatabase database;
-                DBManager db = new DBManager(arg0.getContext());
-                database = db.getWritableDatabase();
-    	        //Guardamos en la base de datos
-    	        //Si hemos abierto correctamente la base de datos
-    	        if(database != null)
-    	        {
-					EditText txt1 = (EditText) findViewById(R.id.costDescripcionEdit);
-					String nota = txt1.getText().toString();
-					int mes=month+1;
-            		String date=day+"/"+mes+"/"+year;
-    	        	if(IdActual.equals("Cost")){
-     
-						EditText txt2 = (EditText) findViewById(R.id.costEdit);
-						double cantidadDeDinero = new Double( txt2.getText().toString());
+        		TransactionDAO DAO =new  TransactionDAO( getApplicationContext());
+        		
+        		DAO.open();
+        		
+        		Transaction transaction;
 
-        		        //Insertamos los datos en la tabla Outcome
-        		        database.execSQL("INSERT INTO TABLE_OUTCOME (COLUMN_ID, COLUMN_Nota, COLUMN_Fecha,COLUMN_Categoria,COLUMN_LocalizacionValida,COLUMN_Longitud,COLUMN_Latitud,COLUMN_Gasto) " 
-        		        +"VALUES ( 0," + nota + "," + date + "," + categoria + "," + geo + "," + Longitud + ", " + Latitud + ", " + cantidadDeDinero +")");
+        		int mes=month+1;
+        		String date=day+""+mes+""+year;           	     
+    			EditText txt1 = (EditText) findViewById(R.id.costDescripcionEdit);
+				String nota = txt1.getText().toString();
+				float cantidadDeDinero =0;
+				SimpleDateFormat day= new SimpleDateFormat("ddMMyyyy");
+				Date selDate=null;
+				try {
+					selDate = day.parse(date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
- 
-    	        	}else{
+        		if(IdActual.equals("Cost")){
+        			
 
-						EditText txt2 = (EditText) findViewById(R.id.ProfitEdit);
-						double cantidadDeDinero = new Double( txt2.getText().toString());
+					EditText txt2 = (EditText) findViewById(R.id.costEdit);
+					String dinero= txt2.getText().toString();
+					if(dinero.equals("")){
+						cantidadDeDinero=0;
+					}else{
+						cantidadDeDinero = Float.parseFloat( dinero);
+					}
 
-        		        //Insertamos los datos en la tabla Outcome
-        		        database.execSQL("INSERT INTO TABLE_INCOME (COLUMN_ID, COLUMN_Nota, COLUMN_Fecha, COLUMN_GANANCIA) " 
-        		        +"VALUES ( 0," + nota + "," + date + "," + cantidadDeDinero +")");
+        			transaction = new Transaction(0, categoria, cantidadDeDinero, selDate, nota, geo, Longitud, Latitud, true);
+        			
+        			DAO.saveTransaction(transaction);
+        			
+        		}else{
 
-
-    	        	}
-    		         
-    	         
-    	            //Cerramos la base de datos
-    	            database.close();
-    	        }
-    	        
+					EditText txt2 = (EditText) findViewById(R.id.ProfitEdit);
+					String dinero= txt2.getText().toString();
+					if(dinero.equals("")){
+						cantidadDeDinero=0;
+					}else{
+						cantidadDeDinero = Float.parseFloat( dinero);
+					}
+					
+        			transaction = new Transaction(0, 0, cantidadDeDinero, selDate, nota, 0, 0, 0, false);
+        			
+        			DAO.saveTransaction(transaction);
+	
+        			
+        		}
+        		
+        		DAO.close();
                 finish();
             }
         });
@@ -274,8 +292,8 @@ public class Introducir_coste extends Activity {
     private void guardarPosicion(Location loc) {
     	if(loc != null)
     	{
-    		Latitud=(loc.getLatitude());
-    		Longitud=(loc.getLongitude());
+    		Latitud=(float) (loc.getLatitude());
+    		Longitud=(float) (loc.getLongitude());
     		Log.i("", String.valueOf(loc.getLatitude() + " - " + String.valueOf(loc.getLongitude())));
     	}
     	else

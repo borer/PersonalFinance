@@ -10,4 +10,13 @@
 	<string name="Add_transaction">Nueva transacción</string>
 	<string name="Leader_Board">Leader Board</string>
 	<string name="Map">Mapa</string>
+	
+	<string name="Category">Seleccione una categoria:</string>	
+    <string name="Cost">Coste:</string>
+    <string name="Profit">Ingreso:</string>
+    <string name="Geolocation">Geolocalización:</string>
+    <string name="Description">Descripción:</string>
+    <string name="Date">Fecha:</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Save">Guardar</string>
 </resources>

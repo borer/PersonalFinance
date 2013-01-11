@@ -2,7 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+   
+    <ScrollView
+        android:id="@+id/costScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/leftMoneyTV" >
+    
    <TabHost
         android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
@@ -36,9 +44,9 @@
 			            android:id="@+id/TipoMensajeGasto"
 			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
-			            android:layout_marginLeft="5dp"
+			            android:layout_marginLeft="18dp"
 			            android:layout_marginTop="5dp"
-			            android:text="Select the category:"
+			            android:text="@string/Category"
 			            android:textAppearance="?android:attr/textAppearanceMedium" />
 					
 					<Spinner
@@ -46,33 +54,38 @@
             			android:layout_width="fill_parent"
            				android:layout_height="wrap_content"
             			android:layout_alignParentRight="true"
-            			android:layout_marginRight="10dp"
+            			android:layout_marginLeft="18dp"
+            			android:layout_marginRight="18dp"
             			android:layout_marginTop="5dp" /> 
-            			            
+            		<LinearLayout
+	                    android:id="@+id/costTextlayout"
+	                    android:layout_width="match_parent"
+	                    android:layout_height="match_parent"
+						android:orientation="horizontal" >	            
 			        <TextView
 			            android:id="@+id/costTextView"
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
-			            android:layout_marginLeft="5dp"
+			            android:layout_marginLeft="18dp"
 			            android:layout_marginTop="5dp"
-			            android:text="Cost:"
-			            android:textAppearance="?android:attr/textAppearanceMedium" />
-			
+			            android:text="@string/Cost"
+			            android:textAppearance="?android:attr/textAppearanceMedium" />			
 			        <EditText
 			            android:id="@+id/costEdit"
 						android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
 			            android:layout_alignBaseline="@+id/costTextView"
 			            android:layout_alignBottom="@+id/costTextView"
-			            android:layout_marginLeft="5dp"
-			            android:layout_marginRight="5dp"
+			            android:layout_marginLeft="10dp"
+			            android:layout_marginRight="18dp"
 			            android:layout_marginTop="5dp"
 			            android:layout_toRightOf="@+id/costTextView"
 			            android:maxLines="1"
 			            android:maxLength="25"
 			            android:ems="10"
 			            android:hint="0"
-			            android:inputType="numberDecimal"  />   
+			            android:inputType="numberDecimal"  />
+			        </LinearLayout>	  
 			        <LinearLayout
 	                    android:id="@+id/geolayout"
 	                    android:layout_width="match_parent"
@@ -82,14 +95,15 @@
 				            android:id="@+id/geoTextView"
 				            android:layout_width="wrap_content"
 				            android:layout_height="wrap_content"
-				            android:layout_marginLeft="5dp"
+				            android:layout_marginLeft="18dp"
 				            android:layout_marginTop="0dp"
-				            android:text="Geolocation:"
+				            android:text="@string/Geolocation"
 				            android:textAppearance="?android:attr/textAppearanceMedium" />
 				        
 						<CheckBox 
 						    android:id="@+id/geocheck" 
-						    android:layout_marginLeft="150dp"
+						    android:layout_marginLeft="100dp"
+						    android:layout_marginRight="18dp"
 						    android:layout_marginTop="0dp"
 							android:layout_width="wrap_content" 
 							android:layout_height="wrap_content"  />	        
@@ -99,14 +113,14 @@
                     android:id="@+id/Profit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-					android:orientation="vertical" >
+					android:orientation="horizontal" >
 			        <TextView
 			            android:id="@+id/ProfitTextView"
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
-			            android:layout_marginLeft="5dp"
+			            android:layout_marginLeft="18dp"
 			            android:layout_marginTop="5dp"
-			            android:text="Profit:"
+			            android:text="@string/Profit"
 			            android:textAppearance="?android:attr/textAppearanceMedium" />
 			
 			        <EditText
@@ -115,8 +129,8 @@
 			            android:layout_height="wrap_content"
 			            android:layout_alignBaseline="@+id/costTextView"
 			            android:layout_alignBottom="@+id/costTextView"
-			            android:layout_marginLeft="5dp"
-			            android:layout_marginRight="5dp"
+			            android:layout_marginLeft="10dp"
+			            android:layout_marginRight="18dp"
 			            android:layout_marginTop="5dp"
 			            android:maxLength="25"
 			            android:layout_toRightOf="@+id/costTextView"
@@ -130,8 +144,8 @@
 	            android:id="@+id/DescriptionCost"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
-	            android:layout_marginLeft="5dp"
-	            android:text="Description:"
+	            android:layout_marginLeft="18dp"
+	            android:text="@string/Description"
 	            android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	        <EditText
@@ -140,8 +154,8 @@
 	            android:layout_height="wrap_content"
 	            android:layout_alignBaseline="@+id/DescripcionMensaje"
 	            android:layout_alignBottom="@+id/DescripcionMensaje"
-	            android:layout_marginLeft="10dp"
-	            android:layout_marginRight="10dp"
+	            android:layout_marginLeft="18dp"
+	            android:layout_marginRight="18dp"
 	            android:lines="2"
 	            android:maxLength="58"
 	            android:layout_toRightOf="@+id/DescripcionMensaje"
@@ -157,18 +171,18 @@
 	            android:id="@+id/ActualDateTextView"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_marginLeft="5dp"
-	            android:layout_marginTop="5dp"
-	            android:text="Actual Date:"
+	            android:layout_marginLeft="18dp"
+	            android:layout_marginTop="18dp"
+	            android:text="@string/Date"
 	            android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	        <Button
 	            android:id="@+id/TimeButton"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_marginLeft="5dp"
-	            android:layout_marginRight="10dp"
-	            android:layout_marginTop="5dp"
+        		android:layout_marginLeft="54dp"
+        		android:layout_marginRight="18dp"
+        		android:layout_marginTop="18dp"
 	            android:text="Date" />
 	        
 		</LinearLayout>	        
@@ -181,23 +195,25 @@
 	           android:layout_width="wrap_content"
 	           android:layout_height="wrap_content"
 	           android:width="150dp"
-	           android:layout_marginLeft="10dp"
+			   android:layout_marginLeft="18dp"
 	           android:orientation="horizontal"
-	           android:text="Cancel" />
+	           android:text="@string/Cancel" />
 	
 	       <Button
 	           android:id="@+id/AceptarButton"
 	           android:layout_width="wrap_content"
 	           android:layout_height="wrap_content"
 	           android:width="150dp"
+               android:layout_marginRight="18dp"
 	           android:layout_alignParentTop="true"
 	           android:layout_toRightOf="@+id/CancelarButton"
 	           android:orientation="horizontal"
-	           android:text="Save" />       
+	           android:text="@string/Save" />       
 		</RelativeLayout>
             
         </LinearLayout>
     </TabHost>
-
+    </ScrollView>
+   
  
 </RelativeLayout>

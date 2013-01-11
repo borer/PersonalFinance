@@ -10,6 +10,16 @@
     <string name="Add_transaction">Add transaction</string>
     <string name="Leader_Board">Leader Board</string>
     <string name="Map">Map</string>
+    
+    <string name="Category">Select the category:</string>
+    <string name="Cost">Cost:</string>
+    <string name="Profit">Profit:</string>
+    <string name="Geolocation">Geolocation:</string>  
+    <string name="Description">Description:</string>
+    <string name="Date">Date:</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Save">Save</string>
+    
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_transaction_list">TransactionListActivity</string>
     <string name="title_activity_score">ScoreActivity</string>

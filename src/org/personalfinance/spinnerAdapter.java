@@ -12,12 +12,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class spinnerAdapter extends ArrayAdapter<String>{
-    private static Integer[] imageIconDatabase = { R.drawable.clothes,
-        R.drawable.food, R.drawable.bar, R.drawable.general,
+    private static Integer[] imageIconDatabase = {R.drawable.general,
+    	R.drawable.clothes, R.drawable.food, R.drawable.bar, 
         R.drawable.gift, R.drawable.hobbies, R.drawable.household,
         R.drawable.car, R.drawable.personal, R.drawable.shopping, R.drawable.travel};
     // stores the image database names
-    private String[] imageNameDatabase = {"Clothes","Food","Bar","General","Gift","Hobbies","HouseHold"
+    private String[] imageNameDatabase = {"General","Clothes","Food","Bar","Gift","Hobbies","HouseHold"
     		,"Car","Personal","Shopping","Travel"};
     
         public spinnerAdapter(Context context, int textViewResourceId,   String[] objects) {
