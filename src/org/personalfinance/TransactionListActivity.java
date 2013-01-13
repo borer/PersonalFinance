@@ -51,6 +51,11 @@ public class TransactionListActivity extends Activity {
 	 * 
 	 */
 	private class TransactionListAdapter extends ArrayAdapter<Transaction> {
+		
+		private Integer[] imageIconDatabase = { R.drawable.clothes,
+	        R.drawable.food, R.drawable.bar, R.drawable.general,
+	        R.drawable.gift, R.drawable.hobbies, R.drawable.household,
+	        R.drawable.car, R.drawable.personal, R.drawable.shopping, R.drawable.travel};
 
 		private List<Transaction> data;
 		private int layoutResourceId;
@@ -95,6 +100,8 @@ public class TransactionListActivity extends Activity {
 
 			Transaction trans = this.data.get(position);
 
+			holder.categoryIcon.setImageResource(this.imageIconDatabase[trans.getCategory()]);
+			
 			holder.txtQuantity
 					.setText(Float.toString(trans.getCantidadDinero()));
 

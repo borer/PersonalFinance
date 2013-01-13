@@ -8,9 +8,14 @@ import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.personalfinance.database.TransactionDAO;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,6 +31,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -39,8 +45,8 @@ public class leaderBoardActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_leader_board);
-		
-		new LeaderBoardLoading().execute();
+
+		new LeaderBoardLoading("Bogdan").execute();
 		
 		ListView leadderBoardListView = (ListView) findViewById(R.id.LeaderBoard_listView);
 		
@@ -113,18 +119,74 @@ public class leaderBoardActivity extends Activity {
 	private class LeaderBoardLoading extends
 			AsyncTask<Void, Integer, List<HighScore>> {
 
-		private String urlScores = "http://finance-api.herokuapp.com/persons/";
+		private String urlScoresGet = "http://finance-api.herokuapp.com/persons/";
+		
+		private String userName;
+		private int score;
+		
+		private String urlScoresPost = "http://finance-api.herokuapp.com/person";
+		
+		public LeaderBoardLoading(String name){
+			this.userName = name;
+		}
 
+		//Hide all the view before load
+		@Override
+		protected void onPreExecute() {
+					
+			View view1 = findViewById(R.id.View01);
+			View view2 = findViewById(R.id.View02);
+			View view3 = findViewById(R.id.View03);
+			ListView listView = (ListView) findViewById(R.id.LeaderBoard_listView);
+					
+			view1.setVisibility(View.GONE);
+			view2.setVisibility(View.GONE);
+			view3.setVisibility(View.GONE);
+			listView.setVisibility(View.GONE);
+					
+			super.onPreExecute();
+		}
+		
 		@Override
 		protected List<HighScore> doInBackground(Void... params) {
+			
+			//Get TotalScores from database
+			
+			TransactionDAO DAO = new TransactionDAO(getApplicationContext());
+			DAO.open();
+			List<Transaction> transactions = DAO.getAllTransactions();
+			DAO.close();
+			
+			this.score =0;
+			for(Transaction trans: transactions){
+				this.score += trans.getCantidadDinero();
+			}
 
+			//Send the local scores
+			
+			HttpClient client = new DefaultHttpClient();
+			HttpPost requestPost = new HttpPost(this.urlScoresPost);
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+			pairs.add(new BasicNameValuePair("name", this.userName ));
+			pairs.add(new BasicNameValuePair("score", Integer.toString(this.score) ));
+			try {
+				requestPost.setEntity(new UrlEncodedFormEntity(pairs));
+				//client.execute(request);
+				//Return the user id
+				HttpResponse response = client.execute(requestPost);
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			//Get the scores
+			
 			List<HighScore> scoreList = new ArrayList<HighScore>();
 
-			HttpClient client = new DefaultHttpClient();
-			HttpGet request = new HttpGet(urlScores);
+			client = new DefaultHttpClient();
+			HttpGet requestGet = new HttpGet(urlScoresGet);
 
 			try {
-				HttpResponse response = client.execute(request);
+				HttpResponse response = client.execute(requestGet);
 				HttpEntity entity = response.getEntity();
 				InputStream is = entity.getContent();
 				String responseString = Utils.convertStreamToString(is);
@@ -149,6 +211,19 @@ public class leaderBoardActivity extends Activity {
 		@Override
 		protected void onPostExecute(List<HighScore> result) {
 
+			//After retrieve the result make the views reappear again
+			View view1 = findViewById(R.id.View01);
+			View view2 = findViewById(R.id.View02);
+			View view3 = findViewById(R.id.View03);
+			ListView listView = (ListView) findViewById(R.id.LeaderBoard_listView);
+			ProgressBar progressBar = (ProgressBar) findViewById(R.id.LeaderBoard_progressBar);
+			
+			progressBar.setVisibility(View.GONE);
+			view1.setVisibility(View.VISIBLE);
+			view2.setVisibility(View.VISIBLE);
+			view3.setVisibility(View.VISIBLE);
+			listView.setVisibility(View.VISIBLE);			
+			
 			if (result == null) {
 				return;
 			}
