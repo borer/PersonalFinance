@@ -2,7 +2,10 @@ package org.personalfinance;
 
 import java.util.Date;
 
-public class Transaction implements Comparable<Transaction> {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Transaction implements Comparable<Transaction>,Parcelable {
 	
 	//Used to identify this object in the database
 	private int id;
@@ -51,6 +54,21 @@ public class Transaction implements Comparable<Transaction> {
 		this.longitud = longitud;
 		this.latitud = latitud;
 		this.isOutcome = isOutcome;
+	}
+	
+	public Transaction(Parcel in){
+		
+		super();
+		
+		this.id = in.readInt();
+		this.category =in.readInt();
+		this.cantidadDinero = in.readFloat();
+		this.fecha = new Date(in.readLong());
+		this.nota = in.readString();
+		this.localizacionValida = in.readInt();
+		this.longitud = in.readFloat();
+		this.latitud = in.readFloat();
+		this.isOutcome = Boolean.valueOf(in.readString());
 	}
 
 	public float getCantidadDinero() {
@@ -125,5 +143,35 @@ public class Transaction implements Comparable<Transaction> {
 		
 	    return getFecha().compareTo(t.getFecha());
 	  }
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		
+		dest.writeInt(id);
+		dest.writeInt(category);
+		dest.writeFloat(cantidadDinero);
+		dest.writeLong(fecha.getTime());
+		dest.writeString(nota);
+		dest.writeInt(localizacionValida);
+		dest.writeFloat(longitud);
+		dest.writeFloat(latitud);
+		dest.writeString(Boolean.toString(isOutcome));
+		
+	}
+	
+	public static final Parcelable.Creator<Transaction> CREATOR = new Parcelable.Creator<Transaction>() {
+		public Transaction createFromParcel(Parcel in) {
+			return new Transaction(in);
+		}
+
+		public Transaction[] newArray(int size) {
+			return new Transaction[size];
+		}
+	};
 	
 }

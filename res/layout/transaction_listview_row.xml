@@ -13,7 +13,8 @@
             android:id="@+id/TransListViewRow_CategoryImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_search" />
+            android:src="@drawable/ic_action_search"
+            android:padding="5dp"  />
 
         <TextView
             android:id="@+id/TransactionListView_Quantity"
@@ -21,7 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text=""
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+           	android:padding="5dp"
+           	android:textColor="#ED687E" />
 
     </LinearLayout>
 
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:paddingRight="20dp"
-        android:text="" />
+        android:text=""
+        android:textColor="#3CBEF1" />
 
 </LinearLayout>

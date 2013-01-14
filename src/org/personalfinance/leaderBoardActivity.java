@@ -22,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -41,27 +42,50 @@ public class leaderBoardActivity extends Activity {
 	
 	private LeaderBoardAdapter adapter;
 	
+	private static String ScoreListKey = "scoreList";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_leader_board);
 
-		new LeaderBoardLoading("Bogdan").execute();
+		//Load the score from local if possible
+		if (savedInstanceState != null) {
+			this.scores = savedInstanceState.getParcelableArrayList(ScoreListKey);
+		}
 		
-		ListView leadderBoardListView = (ListView) findViewById(R.id.LeaderBoard_listView);
+		//Download score from server
+		if(this.scores == null){
+			
+			this.scores = new ArrayList<HighScore>();
+			
+			new LeaderBoardLoading("Bogdan").execute();
+			
+			ListView leadderBoardListView = (ListView) findViewById(R.id.LeaderBoard_listView);
+			
+			this.adapter = new LeaderBoardAdapter(this,
+					R.layout.leader_board_listview_row,
+					this.scores);
+			
+			leadderBoardListView.setAdapter(this.adapter);
+			
+		} else {
+		//Score is already downloaded
+			ProgressBar progressBar = (ProgressBar) findViewById(R.id.LeaderBoard_progressBar);
+			
+			progressBar.setVisibility(View.GONE);
+			
+			this.updateDisplay();
+		}
 		
-		/*List<HighScore> test = new ArrayList<HighScore>();
-		HighScore newh = new HighScore("test", 120);
-		test.add(newh);*/
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+
+		outState.putParcelableArrayList(ScoreListKey, (ArrayList<? extends Parcelable>) this.scores);
 		
-		this.scores = new ArrayList<HighScore>();
-		
-		this.adapter = new LeaderBoardAdapter(this,
-				R.layout.leader_board_listview_row,
-				this.scores);
-		
-		leadderBoardListView.setAdapter(this.adapter);
-		
+		super.onSaveInstanceState(outState);
 	}
 
 	@Override
