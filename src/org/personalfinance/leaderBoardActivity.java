@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,12 @@ public class leaderBoardActivity extends Activity {
 			
 			this.scores = new ArrayList<HighScore>();
 			
-			new LeaderBoardLoading("Bogdan").execute();
+			//Get the current user name
+			SharedPreferences settingsGlobal = getSharedPreferences(
+					Utils.SettingsUserName, 0);
+			String userName = settingsGlobal.getString(Utils.SettingsUserName, "").trim();
+			
+			new LeaderBoardLoading(userName).execute();
 			
 			ListView leadderBoardListView = (ListView) findViewById(R.id.LeaderBoard_listView);
 			

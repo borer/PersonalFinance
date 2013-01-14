@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class Utils {
+	
+	public static String SettingsUserName = "userNameKey";
 
 	/**
 	 * Used by network communication

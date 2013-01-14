@@ -7,17 +7,22 @@ import java.util.List;
 import org.personalfinance.database.TransactionDAO;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -148,6 +153,52 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
+	
+	// EThis is in order to introduce the name
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		if (item.getItemId() == R.id.menu_user_name) {
+			
+			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+			alert.setTitle("");
+			alert.setMessage(getResources().getString(R.string.menu_name));
+
+			// Set an EditText view to get user input /and set the default text to the current userName 
+			SharedPreferences settingsGlobal = getSharedPreferences(
+						Utils.SettingsUserName, 0);
+			String userName = settingsGlobal.getString(Utils.SettingsUserName, "").trim();
+			final EditText input = new EditText(this);
+			input.setText(userName);
+			alert.setView(input);
+
+			alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				
+			  String valueName = input.getText().toString().trim();
+			  
+			  //Save User name to settings
+			  SharedPreferences settingsGlobal = getSharedPreferences(
+						Utils.SettingsUserName, 0);
+			  SharedPreferences.Editor writer = settingsGlobal.edit();
+			  writer.putString(Utils.SettingsUserName, valueName);
+			  writer.commit();
+			  
+			  }
+			});
+
+			alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			  public void onClick(DialogInterface dialog, int whichButton) {
+			    // Canceled.
+			  }
+			});
+
+			alert.show();
+		}
+
+		return false;
+	}
 
 	private class RecentTransactionsAdapter extends ArrayAdapter<Transaction> {
 		
@@ -196,21 +247,5 @@ public class MainActivity extends Activity {
 			return row;
 		}
 	}
-
-	/*void crearDatosDePrueba(SQLiteDatabase database) {
-
-		database.execSQL("INSERT INTO INCOME (Id, Nota, Fecha, Ganacia) "
-				+ "VALUES (1, 'Sueldo', '2012-12-06 05:40:00',2500)");
-
-		database.execSQL("INSERT INTO OUTCOME (Id, Nota, Fecha, Categoria, LocalizacionValida, Longitud, Latitud, Gasto) "
-				+ "VALUES (2, 'Compras del super', '2012-12-07 05:40:00', 1, 0, 0, 0, 100)");
-
-		database.execSQL("INSERT INTO OUTCOME (Id, Nota, Fecha, Categoria, LocalizacionValida, Longitud, Latitud, Gasto) "
-				+ "VALUES (3, 'Ropa', '2012-12-08 05:40:00', 2, 0, 0, 0, 50)");
-
-		database.execSQL("INSERT INTO OUTCOME (Id, Nota, Fecha, Categoria, LocalizacionValida, Longitud, Latitud, Gasto) "
-				+ "VALUES (4, 'Bocadillo', '2012-12-09 05:40:00', 1, 0, 0, 0, 2.50)");
-
-	}*/
 
 }
