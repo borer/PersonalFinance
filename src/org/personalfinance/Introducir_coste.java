@@ -251,13 +251,6 @@ public class Introducir_coste extends Activity {
 	     }
 	     return null;
 	}
-
-	
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_introducir_coste, menu);
-        return true;
-    }
     
     private void comenzarLocalizacion()
     {

@@ -1,16 +1,17 @@
 package org.personalfinance;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.personalfinance.database.TransactionDAO;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,28 +23,43 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class TransactionListActivity extends Activity {
-
-	//private List<Transaction> transactions;
+	
 	private TransactionListAdapter adapter;
+	
+	private List<Transaction> transactions;
+	
+	private static String TransactionListKey = "TransactionList";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_transaction_list);
-
-		// Insert 10 example transactions
-		//TestDB.insertTransactions(this, 10);
-
-		new LoadTransactions().execute();
+		
+		if(savedInstanceState != null){
+			
+			this.transactions = savedInstanceState.getParcelableArrayList(TransactionListKey);
+			
+		}
+		
+		if(this.transactions == null) {
+		
+			new LoadTransactions().execute();
+			
+		} else {
+			
+			this.updateDisplay();
+		}
 		
 	}
-
+	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_transaction_list, menu);
-		return true;
-	}
+	protected void onSaveInstanceState(Bundle outState) {
 
+		outState.putParcelableArrayList(TransactionListKey, (ArrayList<? extends Parcelable>) this.transactions);
+		
+		super.onSaveInstanceState(outState);
+	}
+	
 	/**
 	 * ListView adapter for the transactions list
 	 * 
@@ -157,19 +173,29 @@ public class TransactionListActivity extends Activity {
 		@Override
 		protected void onPostExecute(List<Transaction> result) {
 			
-			this.bar.setVisibility(View.GONE);
-			RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.TransactionListView_relativeLayout);
-			relLayout.setVisibility(View.GONE);
+			transactions = result;
 			
-			this.transactionListView.setVisibility(View.VISIBLE);
-
-			TransactionListActivity.this.adapter = new TransactionListAdapter(TransactionListActivity.this,
-					R.layout.transaction_listview_row, result);
-
-			this.transactionListView.setAdapter(TransactionListActivity.this.adapter);
+			updateDisplay();
 			
 		}
 		
 		
+	}
+	
+	private void updateDisplay(){
+			
+		ProgressBar bar = (ProgressBar) findViewById(R.id.TransactionListView_progressBar);
+		bar.setVisibility(View.GONE);
+		
+		RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.TransactionListView_relativeLayout);
+		relLayout.setVisibility(View.GONE);
+		
+		ListView transactionListView = (ListView) findViewById(R.id.TransactionListView);
+		transactionListView.setVisibility(View.VISIBLE);
+
+		TransactionListActivity.this.adapter = new TransactionListAdapter(TransactionListActivity.this,
+				R.layout.transaction_listview_row, this.transactions);
+
+		transactionListView.setAdapter(TransactionListActivity.this.adapter);
 	}
 }

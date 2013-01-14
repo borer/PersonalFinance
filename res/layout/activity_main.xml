@@ -162,7 +162,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
-        android:text="History" />
+        android:text="@string/History" />
     
     
     </RelativeLayout>

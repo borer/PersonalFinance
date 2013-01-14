@@ -26,7 +26,6 @@ import android.os.Parcelable;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -86,12 +85,6 @@ public class leaderBoardActivity extends Activity {
 		outState.putParcelableArrayList(ScoreListKey, (ArrayList<? extends Parcelable>) this.scores);
 		
 		super.onSaveInstanceState(outState);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_score, menu);
-		return true;
 	}
 	
 	private void updateDisplay(){
@@ -195,9 +188,9 @@ public class leaderBoardActivity extends Activity {
 			pairs.add(new BasicNameValuePair("score", Integer.toString(this.score) ));
 			try {
 				requestPost.setEntity(new UrlEncodedFormEntity(pairs));
-				//client.execute(request);
 				//Return the user id
-				HttpResponse response = client.execute(requestPost);
+				//HttpResponse response = client.execute(requestPost);
+				client.execute(requestPost);
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
