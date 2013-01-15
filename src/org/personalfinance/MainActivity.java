@@ -134,7 +134,7 @@ public class MainActivity extends Activity {
 		// Sum all incomes
 		moneyEarned = 0;
 		List<Transaction> incomeTransactions = DAO.getAllTransactions(false);
-		for(Transaction trans: outcomeTransactions){
+		for(Transaction trans: incomeTransactions){
 			moneyEarned +=trans.getCantidadDinero();
 		}
 
@@ -154,7 +154,7 @@ public class MainActivity extends Activity {
 		Collections.sort(outcomeTransactions);
 		
 		List<Transaction> recentTransactions = new ArrayList<Transaction>();
-		for(int i =0 ;i > nTransaccionesMasRecientes ; i++){
+		for(int i =0 ;i < nTransaccionesMasRecientes ; i++){
 			
 			//This is in order to detect if there is less than 3 transactions
 			if(i == outcomeTransactions.size()) break; 
