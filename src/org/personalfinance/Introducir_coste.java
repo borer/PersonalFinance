@@ -4,7 +4,8 @@ package org.personalfinance;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+//import java.util.Date;
+import java.sql.Date;
 
 
 import org.personalfinance.database.DBManager;
@@ -81,20 +82,20 @@ public class Introducir_coste extends Activity {
         
         TabHost.TabSpec spec=tabs.newTabSpec("Cost");
         spec.setContent(R.id.Cost);
-        spec.setIndicator("Cost");
+        spec.setIndicator(getString(R.string.Coste));
         tabs.addTab(spec);
         IdActual="Cost";
 
         spec=tabs.newTabSpec("Profit");
         spec.setContent(R.id.Profit);
-        spec.setIndicator("Profit");
+        spec.setIndicator(getString(R.string.Profite));
         tabs.addTab(spec);
         
         tabs.setCurrentTab(0);
         
         tabs.setOnTabChangedListener(new OnTabChangeListener() {
 			public void onTabChanged(String tabId) {
-				Log.i("", "Pulsada pestaña: " + tabId);
+				Log.i("", "Pulsada pestaï¿½a: " + tabId);
 				IdActual=tabId;
 			}
 		});
@@ -181,18 +182,11 @@ public class Introducir_coste extends Activity {
         		Transaction transaction;
 
         		int mes=month+1;
-        		String date=day+""+mes+""+year;           	     
+        		String date=year+"-"+mes+"-"+day;           	     
     			EditText txt1 = (EditText) findViewById(R.id.costDescripcionEdit);
 				String nota = txt1.getText().toString();
 				float cantidadDeDinero =0;
-				SimpleDateFormat day= new SimpleDateFormat("ddMMyyyy");
-				Date selDate=null;
-				try {
-					selDate = day.parse(date);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Date selDate = Date.valueOf(date);
 
         		if(IdActual.equals("Cost")){
         			
@@ -206,7 +200,7 @@ public class Introducir_coste extends Activity {
 					}
 
         			transaction = new Transaction(0, categoria, cantidadDeDinero, selDate, nota, geo, Longitud, Latitud, true);
-        			
+                	Log.i("", "Guardado"+nota + cantidadDeDinero+ selDate);
         			DAO.saveTransaction(transaction);
         			
         		}else{
@@ -251,19 +245,20 @@ public class Introducir_coste extends Activity {
 	     }
 	     return null;
 	}
-    
+
+
     private void comenzarLocalizacion()
     {
     	//Obtenemos una referencia al LocationManager
     	locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
     	
-    	//Obtenemos la última posición conocida
+    	//Obtenemos la ï¿½ltima posiciï¿½n conocida
     	Location loc = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     	
-    	//Mostramos la última posición conocida
+    	//Mostramos la ï¿½ltima posiciï¿½n conocida
     	guardarPosicion(loc);
     	
-    	//Nos registramos para recibir actualizaciones de la posición
+    	//Nos registramos para recibir actualizaciones de la posiciï¿½n
     	locListener = new LocationListener() {
 	    	public void onLocationChanged(Location location) {
 	    		guardarPosicion(location);

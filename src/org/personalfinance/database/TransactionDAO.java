@@ -277,7 +277,7 @@ public class TransactionDAO {
 		transaction.setFecha(transactionDate);
 		transaction.setCategory(category);
 		transaction.setLongitud(longitud);
-		transaction.setLongitud(latitud);
+		transaction.setLatitud(latitud);
 		transaction.setCantidadDinero(dinero);
 		transaction.setLocalizacionValida(localizacionValida);
 		transaction.setOutcome(true);

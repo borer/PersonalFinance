@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.google.android.maps.MapView
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:id="@+id/themap"
+                 android:clickable="true"
+                 android:enabled="true"
+                 android:apiKey="0QVpKxnYXPvfmugrDEV2M6jaJ8r1St9rc1SjhFA">
+	</com.google.android.maps.MapView>
+
+</RelativeLayout>

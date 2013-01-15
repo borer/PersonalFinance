@@ -1,11 +1,14 @@
 package org.personalfinance;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class spinnerAdapter extends ArrayAdapter<String>{
@@ -19,6 +22,9 @@ public class spinnerAdapter extends ArrayAdapter<String>{
     
         public spinnerAdapter(Context context, int textViewResourceId,   String[] objects) {
             super(context, textViewResourceId, objects);
+            for(int i=0;i<11;i++){
+            	imageNameDatabase[i]=objects[i];
+            }
         }
  
         @Override

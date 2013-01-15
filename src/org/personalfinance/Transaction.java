@@ -136,20 +136,19 @@ public class Transaction implements Comparable<Transaction>,Parcelable {
 		this.latitud = latitud;
 	}
 
-	@Override
-	  public int compareTo(Transaction t) {
+	public int compareTo(Transaction t) {
 		if (getFecha() == null || t.getFecha() == null)
 		      return 0;
 		
 	    return getFecha().compareTo(t.getFecha());
 	  }
 
-	@Override
+
 	public int describeContents() {
 		return 0;
 	}
 
-	@Override
+
 	public void writeToParcel(Parcel dest, int flags) {
 		
 		dest.writeInt(id);

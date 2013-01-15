@@ -1,24 +1,45 @@
 <resources>
 
     <string name="app_name">Personal Finance</string>
-    <string name="menu_name">Nombre de Usuario</string>
+    <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Personal Finance</string>
     
     <string name="Left">Queda</string>
     <string name="Earned">Ganado</string>
 	<string name="Spent">Gastado</string>
 	<string name="Add_transaction">Nueva transacción</string>
-	<string name="Leader_Board">Puntuacion</string>
+	<string name="Leader_Board">Leader Board</string>
 	<string name="Map">Mapa</string>
-	
+		
 	<string name="History">Historial</string>
 	
 	<string name="Category">Seleccione una categoria:</string>	
     <string name="Cost">Coste:</string>
+    <string name="Coste">Coste</string>
     <string name="Profit">Ingreso:</string>
+   	<string name="Profite">Ingreso</string>
     <string name="Geolocation">Geolocalización:</string>
     <string name="Description">Descripción:</string>
     <string name="Date">Fecha:</string>
     <string name="Cancel">Cancelar</string>
     <string name="Save">Guardar</string>
+    
+    <string name="General">General</string>
+    <string name="Clothes">Ropa</string>
+    <string name="Food">Comida</string>
+    <string name="Bar">Bar</string>
+    <string name="Gift">Regalos</string>
+    <string name="Hobbies">Hobby</string>
+    <string name="HouseHold">Hogar</string>
+    <string name="Car">Coche</string>
+    <string name="Personal">Personal</string>
+    <string name="Shopping">Compras</string>
+    <string name="Travel">Viaje</string>
+    
+    <string name="title_activity_bar_trial">Grafica</string>
+    <string name="user_expenses">Gastos del usuario</string>
+    <string name="jan">Ene</string>
+    <string name="apr">Abr</string>
+    <string name="aug">Ago</string>
+    <string name="dec">Dic</string>
 </resources>

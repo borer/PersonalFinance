@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#303030" >
    
     <ScrollView
         android:id="@+id/costScrollView"
@@ -47,7 +48,8 @@
 			            android:layout_marginLeft="18dp"
 			            android:layout_marginTop="5dp"
 			            android:text="@string/Category"
-			            android:textAppearance="?android:attr/textAppearanceMedium" />
+        				android:textAppearance="?android:attr/textAppearanceMedium"
+       					android:textColor="#fff" />
 					
 					<Spinner
             			android:id="@+id/SelectTipoGasto"
@@ -69,7 +71,8 @@
 			            android:layout_marginLeft="18dp"
 			            android:layout_marginTop="5dp"
 			            android:text="@string/Cost"
-			            android:textAppearance="?android:attr/textAppearanceMedium" />			
+			            android:textAppearance="?android:attr/textAppearanceMedium"
+        				android:textColor="#fff" />			
 			        <EditText
 			            android:id="@+id/costEdit"
 						android:layout_width="fill_parent"
@@ -98,7 +101,8 @@
 				            android:layout_marginLeft="18dp"
 				            android:layout_marginTop="0dp"
 				            android:text="@string/Geolocation"
-				            android:textAppearance="?android:attr/textAppearanceMedium" />
+        					android:textAppearance="?android:attr/textAppearanceMedium"
+        					android:textColor="#fff"/>
 				        
 						<CheckBox 
 						    android:id="@+id/geocheck" 
@@ -121,7 +125,8 @@
 			            android:layout_marginLeft="18dp"
 			            android:layout_marginTop="5dp"
 			            android:text="@string/Profit"
-			            android:textAppearance="?android:attr/textAppearanceMedium" />
+        				android:textAppearance="?android:attr/textAppearanceMedium"
+        				android:textColor="#fff" />
 			
 			        <EditText
 			            android:id="@+id/ProfitEdit"
@@ -137,7 +142,8 @@
 			            android:maxLines="1"
 			            android:ems="10"
 			            android:hint="0"
-			            android:inputType="numberDecimal" />             
+			            android:inputType="numberDecimal"
+			             />             
                 </LinearLayout>
             </FrameLayout>
           	<TextView
@@ -146,7 +152,8 @@
 	            android:layout_height="wrap_content"
 	            android:layout_marginLeft="18dp"
 	            android:text="@string/Description"
-	            android:textAppearance="?android:attr/textAppearanceMedium" />
+        		android:textAppearance="?android:attr/textAppearanceMedium"
+        		android:textColor="#fff"/>
 	
 	        <EditText
 	            android:id="@+id/costDescripcionEdit"
@@ -174,7 +181,8 @@
 	            android:layout_marginLeft="18dp"
 	            android:layout_marginTop="18dp"
 	            android:text="@string/Date"
-	            android:textAppearance="?android:attr/textAppearanceMedium" />
+        		android:textAppearance="?android:attr/textAppearanceMedium"
+        		android:textColor="#fff" />
 
 	        <Button
 	            android:id="@+id/TimeButton"

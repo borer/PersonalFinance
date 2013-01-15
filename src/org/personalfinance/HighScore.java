@@ -43,7 +43,6 @@ public class HighScore implements Comparable<HighScore>, Parcelable {
 		this.score = score;
 	}
 
-	@Override
 	public int compareTo(HighScore arg0) {
 
 		if (this.score < arg0.getScore()) {
@@ -56,12 +55,10 @@ public class HighScore implements Comparable<HighScore>, Parcelable {
 
 	}
 
-	@Override
 	public int describeContents() {
 		return 0;
 	}
 
-	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		
 		dest.writeInt(this.score);

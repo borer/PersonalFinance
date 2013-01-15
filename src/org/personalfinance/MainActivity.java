@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -80,9 +81,29 @@ public class MainActivity extends Activity {
 			}
 		};
 		AddTransactionButton.setOnClickListener(AddTransactionListener);
+		
+		Button mapButton = (Button) findViewById(R.id.mapButton);
+		OnClickListener mapListener = new OnClickListener() {
+			public void onClick(View v) {
+				Intent  mapIntent = new Intent(getApplicationContext(), MapsActivity.class);
+				startActivity(mapIntent);
+			}
+		};
+		mapButton.setOnClickListener(mapListener);
 
 	}
+	
+	//Si el dispositivo se rota, se lanza la activity de la grafica y esta se finaliza
+	public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
 
+		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+		    Intent intent = new Intent(this, BarTrial.class);
+	    		startActivity(intent);
+	    		this.finish();
+		}
+
+    }
 	public void updateDataDisplayed() {
 		int nTransaccionesMasRecientes = 3;
 		// dateFormat = "yyyy-MM-dd HH:mm:ss";
@@ -120,9 +141,9 @@ public class MainActivity extends Activity {
 		DAO.close();
 		
 		// Fill balance information
-		moneySpentTV.setText("" + moneySpent);
-		moneyLeftTV.setText("" + (moneyEarned - moneySpent));
-		moneyEarnedTV.setText("" + moneyEarned);
+		moneySpentTV.setText("€" + moneySpent);
+		moneyLeftTV.setText("€" + (moneyEarned - moneySpent));
+		moneyEarnedTV.setText("€" + moneyEarned);
 		moneyProgressBar.setMax((int) moneyEarned);
 		moneyProgressBar.setProgress((int) (moneyEarned - moneySpent));
 		
@@ -240,12 +261,19 @@ public class MainActivity extends Activity {
 			transactionNameTV.setText(nota);
 
 			transactionAmountTV
-					.setText(""
+					.setText("€"
 							+ recentTransactionsArray.get(position)
 									.getCantidadDinero());
 
 			return row;
 		}
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		updateDataDisplayed();
 	}
 
 }
