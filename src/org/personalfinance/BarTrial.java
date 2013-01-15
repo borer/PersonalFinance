@@ -134,6 +134,7 @@ public class BarTrial extends Activity {
 
 		renderer.setShowLegend(false);
 		renderer.setShowGrid(true);
+		renderer.setPanEnabled(false, false);
 		
 		final GraphicalView grfv = ChartFactory.getBarChartView(BarTrial.this, buildBarDataset(titles, values), renderer,Type.DEFAULT);
 
