@@ -155,12 +155,15 @@ public class MainActivity extends Activity {
 		
 		List<Transaction> recentTransactions = new ArrayList<Transaction>();
 		for(int i =0 ;i < nTransaccionesMasRecientes ; i++){
-			
-			//This is in order to detect if there is less than 3 transactions
-			if(i == outcomeTransactions.size()) break; 
-			
-			Transaction transaction = outcomeTransactions.get(i);
-			recentTransactions.add(transaction);
+			   if(i == outcomeTransactions.size() ) break; 
+			   //get the last transactions
+			   int index = (outcomeTransactions.size()-1) - i;
+			   
+			   //This is in order to detect if there is less than 3 transactions
+			   if(index > outcomeTransactions.size() || index < 0) break; 
+			   
+			   Transaction transaction = outcomeTransactions.get(index);
+			   recentTransactions.add(transaction);
 		}
 		
 		ListView lastTransactionsLV = (ListView) findViewById(R.id.lastTransactionsLV);

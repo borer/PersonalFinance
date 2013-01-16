@@ -122,11 +122,21 @@
         android:layout_marginTop="16dp"
         android:text="@string/Add_transaction" />
     
+    <Button
+        android:id="@+id/AllTransactionButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTransactionButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:text="@string/History" />
+    
     <ScrollView
         android:id="@+id/leaderAndMapScrollView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addTransactionButton"
+        android:layout_below="@+id/AllTransactionButton"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
@@ -153,16 +163,6 @@
             
         </LinearLayout>
     </ScrollView>
-    
-    <Button
-        android:id="@+id/AllTransactionButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/leaderAndMapScrollView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
-        android:text="@string/History" />
     
     
     </RelativeLayout>

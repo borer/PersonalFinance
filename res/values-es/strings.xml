@@ -4,6 +4,8 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Personal Finance</string>
     
+    <string name="menu_name">Nombre Usuario</string>
+    
     <string name="Left">Queda</string>
     <string name="Earned">Ganado</string>
 	<string name="Spent">Gastado</string>

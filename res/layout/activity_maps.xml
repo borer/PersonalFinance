@@ -9,7 +9,7 @@
                  android:id="@+id/themap"
                  android:clickable="true"
                  android:enabled="true"
-                 android:apiKey="0QVpKxnYXPvfmugrDEV2M6jaJ8r1St9rc1SjhFA">
+                 android:apiKey="0MhaRepZqNi3dk1RAdX1yiQGnoXi0Tu0qeW2Nww">
 	</com.google.android.maps.MapView>
 
 </RelativeLayout>
