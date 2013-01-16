@@ -4,8 +4,8 @@ package org.personalfinance;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-//import java.util.Date;
-import java.sql.Date;
+import java.util.Date;
+//import java.sql.Date;
 
 
 import org.personalfinance.database.DBManager;
@@ -186,7 +186,12 @@ public class Introducir_coste extends Activity {
     			EditText txt1 = (EditText) findViewById(R.id.costDescripcionEdit);
 				String nota = txt1.getText().toString();
 				float cantidadDeDinero =0;
-				Date selDate = Date.valueOf(date);
+				//Date selDate = Date.valueOf(date);
+				
+				Date selDate = new Date();
+				selDate.setMonth(mes);
+				selDate.setYear(year);
+				selDate.setDate(day);
 
         		if(IdActual.equals("Cost")){
         			
